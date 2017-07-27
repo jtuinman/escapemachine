@@ -306,7 +306,9 @@ time.sleep(0.5)
 spot = OutputPin(config.getint("Escape", "spotpin"), "Spot")
 time.sleep(0.5)
 magnet = OutputPin(config.getint("Escape", "magnetpin"), "Magnet")
-outputpins = {lamp.name:lamp, spot.name:spot,magnet.name:magnet}
+time.sleep(0.5)
+cabinet = OutputPin(config.getint("Escape", "cabinetpin"), "Cabinet")
+outputpins = {lamp.name:lamp, spot.name:spot, magnet.name:magnet, cabinet.name:cabinet}
 sounddir = config.get("Escape", "sounddir") + "/"
 music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
