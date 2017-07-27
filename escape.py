@@ -107,25 +107,6 @@ def state_machine_endgame():
     play_music(sounddir + config.get("Escape","music_state_endgame"))
     play_scene_sound("sound_effect_endgame")
 
-def button_listener_thread(pin):
-    logger.info(str(pin) + " listener up for reading")
-    while True:
-        logger.info(str(pin))
-        GPIO.wait_for_edge(pin, GPIO.BOTH)
-        logger.info(str(pin) + " got edge!")
-        run_state_machine()
-        time.sleep(1)
-
-def setup_pin(pin, input=True):
-    if input and GPIO:
-        GPIO.setup(pin, GPIO.IN)
-        
-        ## button_thread = Thread(target = button_listener_thread, args = (pin,))
-        ## button_thread.daemon = True
-        ## button_thread.start()
-    return pin
-
-   
 
 def play_scene_sound(scene_sound):
     if config.has_option('Escape', scene_sound):
