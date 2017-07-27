@@ -10,11 +10,11 @@ import sys
 import re
 from escape_library import OutputPin, CaravanLoggingHandler
 
-chip_complete_mode = False
+rpi_complete_mode = False
 try:
     import RPi.GPIO as GPIO
     GPIO.setmode(GPIO.BCM)
-    chip_complete_mode = True
+    rpi_complete_mode = True
 except Exception:
     GPIO = False
 
@@ -75,6 +75,7 @@ def state_machine_start():
     spot.turn_off()
     lamp.turn_off()
     magnet.turn_off()
+    cabinet.turn_off()
     stop_music()
 
 def state_machine_reset():
@@ -84,6 +85,7 @@ def state_machine_reset():
     spot.turn_off()
     lamp.turn_on()
     magnet.turn_on()
+    cabinet.turn_on()
     play_music(sounddir + config.get("Escape","music_state_entree"))
     play_scene_sound("sound_effect_entree")
 
@@ -319,7 +321,7 @@ pygame.mixer.music.set_volume(music_volume / 100)
 state_machine_start()
 state = STATE_START
 
-if chip_complete_mode:
+if rpi_complete_mode:
     logger.error("RPi found, running on Pi mode")
 else:
     logger.error("RPi NOT found. Running in fake mode")
@@ -327,7 +329,7 @@ else:
 debug = config.getboolean("Escape", "debug")
 if debug:
     logger.error("Running in debug mode, app will restart.")
-    if chip_complete_mode:
+    if rpi_complete_mode:
         logger.error("This might cause weird behaviour on the Pi, so please don't do that")
 
 logger.error("Starting app complete")

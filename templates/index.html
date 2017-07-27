@@ -43,7 +43,7 @@
              <!-- All the states known to the system, passed on page creation -->
                 {%  for state in states.values() %}
 
-                <div class="col s12 m6 l3" id="statelist">
+                <div class="col s6 m6 l3" id="statelist">
                     <div class="card lighten-5" id="{{ state }}" onClick="forceState(this, '{{ state }}')">
                         <div class="card-content deep-orange-text darken-4">
                             <span class="card-title">{{ state }}</span>
