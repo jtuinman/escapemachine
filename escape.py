@@ -165,6 +165,8 @@ def play_music(soundpath):
     music = soundpath
     pygame.mixer.music.set_volume(float(music_volume) / 100)
     pygame.mixer.music.play(-1)
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
 
 def stop_music():
     fade = config.getint("Escape","fadeout")
@@ -280,6 +282,7 @@ except:
 ## Set up mixer now while time is still cheap
 if not pygame.mixer.get_init():
     logger.info("Now initalizing mixer")
+    pygame.mixer.pre_init(44100, -16, 2, 2048)
     pygame.mixer.init()
 
 ## When CTRL-Cing python script, make sure that the mixer and pins are released
