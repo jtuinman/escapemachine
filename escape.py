@@ -2,7 +2,6 @@ import ConfigParser
 import logging
 import os
 import pygame
-from threading import Thread
 
 from flask import Flask, render_template, jsonify
 import time
@@ -53,10 +52,11 @@ def clean():
 ## version I'm not investing time in that yet.
 def run_state_machine():
     ## Measuring buttons states before investigating current state
-    book1pushed = not GPIO.input(bookbutton1pin)
-    book2pushed = not GPIO.input(bookbutton2pin)
-    keypushed = not GPIO.input(keybuttonpin)
-    logger.info("Buttons push, now in: pin1 " + str(book1pushed) + ", pin2 " + str(book2pushed) + ", pin3 " + str(keypushed))
+    time.sleep(0.3)
+    book1pushed = GPIO.input(bookbutton1pin)
+    book2pushed = GPIO.input(bookbutton2pin)
+    keypushed = GPIO.input(keybuttonpin)
+    logger.info("Buttons push, now in: book1 " + str(book1pushed) + ", book2 " + str(book2pushed) + ", key " + str(keypushed))
 
     ## Nobody said it had to be hard!
     if not book1pushed and not book2pushed and state == STATE_NORMAL:
@@ -105,21 +105,6 @@ def state_machine_endgame():
     play_music(sounddir + config.get("Escape","music_state_endgame"))
     play_scene_sound("sound_effect_endgame")
 
-def button_listener_thread(pin):
-    logger.info(pin + " listener up for reading")
-    while True:
-        GPIO.wait_for_edge(pin, GPIO.BOTH)
-        logger.info(pin + " got edge!")
-        run_state_machine()
-        time.sleep(1)
-
-def setup_pin(pin, input=True):
-    if input and GPIO:
-        GPIO.setup(pin, GPIO.IN)
-        button_thread = Thread(target = button_listener_thread, args = (pin,))
-        button_thread.daemon = True
-        button_thread.start()
-    return pin
 
 def play_scene_sound(scene_sound):
     if config.has_option('Escape', scene_sound):
@@ -302,9 +287,21 @@ logger.setLevel(logging.INFO)
 
 ## Init all pins
 logger.info("Initalizing pins")
-bookbutton1pin = setup_pin(config.get("Escape", "bookbutton1pin"))
-bookbutton2pin = setup_pin(config.get("Escape", "bookbutton2pin"))
-keybuttonpin = setup_pin(config.get("Escape", "keybuttonpin"))
+## bookbutton1pin = setup_pin(config.get("Escape", "bookbutton1pin"))
+## bookbutton2pin = setup_pin(config.get("Escape", "bookbutton2pin"))
+## keybuttonpin = setup_pin(config.get("Escape", "keybuttonpin"))
+bookbutton1pin = config.getint("Escape", "bookbutton1pin")
+GPIO.setup(bookbuttonpin1, GPIO.IN)
+GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+
+bookbuttonpin2 = config.getint("Escape", "bookbutton2pin")
+GPIO.setup(bookbuttonpin2, GPIO.IN)
+GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+
+keybuttonpin = config.getint("Escape", "keybuttonpin")
+GPIO.setup(keybuttonpin, GPIO.IN)
+GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+
 lamp = OutputPin(config.get("Escape", "lamppin"), "Lamp")
 time.sleep(0.5)
 spot = OutputPin(config.get("Escape", "spotpin"), "Spot")
@@ -334,10 +331,4 @@ if debug:
 
 logger.error("Starting app complete")
 
-
 app.run(debug=config.getboolean("Escape", "debug"),host="0.0.0.0",port=config.getint("Escape", "port"),threaded=True)
-
-
-
-
-
