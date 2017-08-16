@@ -50,12 +50,13 @@ def clean():
 ## Given time, the state machine should be migrated to it's own class and use
 ## external XML or sorts to define states. Seeing the clear purpose of the current
 ## version I'm not investing time in that yet.
-def run_state_machine():
+def run_state_machine(channel):
     ## Measuring buttons states before investigating current state
     time.sleep(0.3)
-    book1pushed = GPIO.input(bookbutton1pin)
-    book2pushed = GPIO.input(bookbutton2pin)
-    keypushed = GPIO.input(keybuttonpin)
+    logger.info("Entering state machine")
+    book1pushed = not GPIO.input(bookbuttonpin1)
+    book2pushed = not GPIO.input(bookbuttonpin2)
+    keypushed = not GPIO.input(keybuttonpin)
     logger.info("Buttons push, now in: book1 " + str(book1pushed) + ", book2 " + str(book2pushed) + ", key " + str(keypushed))
 
     ## Nobody said it had to be hard!
@@ -290,15 +291,15 @@ logger.info("Initalizing pins")
 ## bookbutton1pin = setup_pin(config.get("Escape", "bookbutton1pin"))
 ## bookbutton2pin = setup_pin(config.get("Escape", "bookbutton2pin"))
 ## keybuttonpin = setup_pin(config.get("Escape", "keybuttonpin"))
-bookbutton1pin = config.getint("Escape", "bookbutton1pin")
+bookbuttonpin1 = config.get("Escape", "bookbutton1pin")
 GPIO.setup(bookbuttonpin1, GPIO.IN)
 GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
-bookbuttonpin2 = config.getint("Escape", "bookbutton2pin")
+bookbuttonpin2 = config.get("Escape", "bookbutton2pin")
 GPIO.setup(bookbuttonpin2, GPIO.IN)
 GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
-keybuttonpin = config.getint("Escape", "keybuttonpin")
+keybuttonpin = config.get("Escape", "keybuttonpin")
 GPIO.setup(keybuttonpin, GPIO.IN)
 GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
@@ -331,4 +332,4 @@ if debug:
 
 logger.error("Starting app complete")
 
-app.run(debug=config.getboolean("Escape", "debug"),host="0.0.0.0",port=config.getint("Escape", "port"),threaded=True)
+app.run(debug=False,host="0.0.0.0",port=config.getint("Escape", "port"),threaded=True)
