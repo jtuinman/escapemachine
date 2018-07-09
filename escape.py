@@ -87,7 +87,7 @@ def state_machine_reset():
     magnet.turn_on()
     cabinet.turn_on()
     play_music(sounddir + config.get("Escape","music_state_entree"))
-    play_scene_sound("sound_effect_entree")
+##    play_scene_sound("sound_effect_entree")
 
 def state_machine_bathroom():
     global state
@@ -97,7 +97,7 @@ def state_machine_bathroom():
     magnet.turn_off()
     spot.turn_on()
     play_music(sounddir + config.get("Escape","music_state_bathroom"))
-    play_scene_sound("sound_effect_bathroom")
+##    play_scene_sound("sound_effect_bathroom")
 
 def state_machine_endgame():
     global state
@@ -107,7 +107,7 @@ def state_machine_endgame():
     magnet.turn_off()
     lamp.turn_on()
     play_music(sounddir + config.get("Escape","music_state_endgame"))
-    play_scene_sound("sound_effect_endgame")
+##    play_scene_sound("sound_effect_endgame")
 
 
 def play_scene_sound(scene_sound):
@@ -336,6 +336,5 @@ if debug:
         logger.error("This might cause weird behaviour on the Pi, so please don't do that")
 
 logger.error("Starting app complete")
-
 
 app.run(debug=config.getboolean("Escape", "debug"),host="0.0.0.0",port=config.getint("Escape", "port"),threaded=True)

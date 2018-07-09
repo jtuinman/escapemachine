@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,103 +9,105 @@
 
     <!-- Bootstrap -->
     <link href="static/css/material-icons.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css"/>
-    <link type="text/css" rel="stylesheet" href="static/css/nouislider.css"/>
-  </head>
-  <body>
+    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" />
+    <link type="text/css" rel="stylesheet" href="static/css/nouislider.css" />
+</head>
+<body>
 
-   <nav>
-    <div class="nav-wrapper">
-        <img src="static/images/logo.png" height="100%">
-        <a href="#!" class="brand-logo center" id="swclock">0:00</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      </ul>
-    </div>
-  </nav>
+    <nav>
+        <div class="nav-wrapper">
+            <img src="static/images/logo.png" height="100%">
+            <a href="#!" class="brand-logo center" id="swclock">0:00</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down"></ul>
+        </div>
+    </nav>
 
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a class="btn-floating btn-large red" id="swstart">
-      <i class="large material-icons" >play_arrow</i>
-    </a>
-  </div>
-
-  <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a href="#home">Scenes</a></li>
-        <li class="tab col s3"><a href="#sounds">Hints</a></li>
-        <li class="tab col s3"><a href="#log">System</a></li>
-      </ul>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red" id="swstart">
+            <i class="large material-icons">play_arrow</i>
+        </a>
     </div>
 
-          <div id="home" class="col s12">
-             <div class="row">
-             <!-- All the states known to the system, passed on page creation -->
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a href="#home">Scenes</a></li>
+                <li class="tab col s3"><a href="#sounds">Hints</a></li>
+                <li class="tab col s3"><a href="#log">System</a></li>
+		<li class="tab col s3"><a href="#sounds">Hints</a></li>
+            </ul>
+        </div>
+
+        <div id="home" class="col s12">
+            <div class="row">
+                <!-- All the states known to the system, passed on page creation -->
                 {%  for state in states.values() %}
 
                 <div class="col s6 m6 l3" id="statelist">
-                    <div class="card lighten-5" id="{{ state }}" onClick="forceState(this, '{{ state }}')">
+                    <div class="card lighten-5" id="{{ state }}" onclick="forceState(this, '{{ state }}')">
                         <div class="card-content deep-orange-text darken-4">
                             <span class="card-title">{{ state }}</span>
                         </div>
                     </div>
                 </div>
-                 {% endfor  %}
+                {% endfor  %}
             </div>
             <div class="row">
                 <!-- All the output pins known to the system, passed on page creation -->
                 {%  for pin in outputpins.values() %}
-                    <div class="col s6 m3 l1">
-                        {{ pin.name }}
-                        <div class="switch">
-                            <label>Uit
-                              <input type="checkbox" name="switchbutton" id="{{ pin.name }}" {% if pin.is_on %}checked{% endif %}>
-                              <span class="lever"></span>
+                <div class="col s6 m3 l1">
+                    {{ pin.name }}
+                    <div class="switch">
+                        <label>
+                            Uit
+                            <input type="checkbox" name="switchbutton" id="{{ pin.name }}" {% if pin.is_on %}checked{% endif %}>
+                            <span class="lever"></span>
                             Aan
-                            </label>
-                        </div>
+                        </label>
                     </div>
-                    {% endfor  %}
+                </div>
+                {% endfor  %}
 
             </div>
 
-              <div class="row">
-                   <ul id="swresults" class="collection">
-                   </ul>
-              </div>
-           </div>
+            <div class="row">
+                <ul id="swresults" class="collection"></ul>
+            </div>
+        </div>
 
-           <div id="sounds" class="col s12">
+        <div id="sounds" class="col s6">
             <div class="row">
                 <div class="col s12">
                     <div id="soundlist" class="collection">
-                       {%  for sound in sounds %}
-                            <a href="#" soundfile="{{ sound }}" class="collection-item left-align"><i class="small material-icons left">play_arrow</i>{{ sound }}</a>
-                       {% endfor %}
+                        {%  for sound in sounds %}
+                        <a href="#" soundfile="{{ sound }}" class="collection-item left-align"><i class="small material-icons left">play_arrow</i>{{ sound }}</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
 
-         <div id="log" class="col s12">
-          <h4>Volume</h4>
-         <div class="divider"></div>
+       </div>
+
+        <div id="log" class="col s12">
+            <h4>Volume</h4>
+            <div class="divider"></div>
             <div class="section">
                 <div class="row">
                     <div class="col s12">
                         <label>Now playing..</label>
-                        <p><span id="playing_music" >(not playing)</span></p>
+                        <p><span id="playing_music">(not playing)</span></p>
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col s1"><i class="material-icons">volume_up</i></div>
-                        <div class="col s11"><div id="musicvol"></div></div>
+                    <div class="col s1"><i class="material-icons">volume_up</i></div>
+                    <div class="col s11"><div id="musicvol"></div></div>
                 </div>
                 <div class="divider"></div>
                 <div class="row">
                     <div class="col s12">
                         <label>Now playing..</label>
-                        <p><span id="playing_sound" >(not playing)</span></p>
+                        <p><span id="playing_sound">(not playing)</span></p>
                     </div>
                 </div>
                 <div class="row">
@@ -114,233 +116,230 @@
                 </div>
 
 
-          <h4>System</h4>
-         <div class="divider"></div>
-        <div class="section">
-          <div class="row">
-            <div class="col s12">
-                <a class="waves-effect waves-light btn modal-trigger" href="#stop">Halt system</a>
+                <h4>System</h4>
+                <div class="divider"></div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col s12">
+                            <a class="waves-effect waves-light btn modal-trigger" href="#stop">Halt system</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul id="loglist" class="collection"></ul>
+                    </div>
+                </div>
             </div>
-          </div>
+            <!-- einde tabs -->
+            <!-- Modal Structure -->
+            <div id="stop" class="modal">
+                <div class="modal-content">
+                    <h5>Halt system</h5>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-lg btn-block btn-danger" id="shutdown"><i class="material-icons left">power_settings_new</i>Shutdown!</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-lg btn-block btn-danger" id="reboot"><i class="material-icons left">replay</i>Reboot!</button><br>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                </div>
+            </div>
+
         </div>
 
-             <div class="row">
-                <div class="col-md-12">
-                    <ul id="loglist" class="collection">
-                    </ul>
-                </div>
-            </div>
-         </div>
-  <!-- einde tabs -->
 
-
-  <!-- Modal Structure -->
-  <div id="stop" class="modal">
-    <div class="modal-content">
-      <h5>Halt system</h5>
-             <div class="row">
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-lg btn-block btn-danger" id="shutdown"><i class="material-icons left">power_settings_new</i>Shutdown!</button>
-                </div>
-            </div>
-             <div class="row">
-                <div class="col-md-12">
-                    <button type="button" class="btn btn-lg btn-block btn-danger" id="reboot"><i class="material-icons left">replay</i>Reboot!</button><br>
-                </div>
-            </div>
-
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    </div>
-  </div>
-
-</div>
-
-
-   <script src="static/js/jquery-2.1.1.min.js"></script>
-   <script type="text/javascript" src="static/js/materialize.min.js"></script>
-   <script type="text/javascript" src="static/js/nouislider.min.js"></script>
-   <script language="javascript">
-        function timestamp() {
-            return Math.floor(Date.now() / 1000)
-        }
-
-        function sw_log(text) {
-            swval = $("#swclock").text()
-            $("#swresults").append('<li class="collection-item"><span class="title">'+swval+ '</span> ' + text)
-        }
-
-        var last_state = false;
-        var max_time = {{ max_time }};
-        var refresh_state = {{ refresh_state }};
-
-        // enable vibration support
-        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-
-    function get_state() {
-        $.getJSON("/state", function (data) {
-            // First, set all buttons to grey except for the active state
-            $("#statelist div").toggleClass("deep-orange lighten-5 lighten-3", false)
-            $("#" + data.state).toggleClass("deep-orange lighten-5", true)
-
-            // If state has changed since last state and the stopwatch started, add to saved times
-            if(sw_interval && (data.state != last_state) ) {
-                sw_log(data.state)
-                toast("Now starting scene " + data.state)
-                last_state = data.state
+        <script src="static/js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="static/js/materialize.min.js"></script>
+        <script type="text/javascript" src="static/js/nouislider.min.js"></script>
+        <script language="javascript">
+            function timestamp() {
+                return Math.floor(Date.now() / 1000)
             }
 
-            // If a playing sound was received, display that to the user
-            if (data.sound) {
-                $("#playing_sound").text(data.sound)
-            } else {
-                $("#playing_sound").text("(none right now)")
+            function sw_log(text) {
+                swval = $("#swclock").text()
+                $("#swresults").append('<li class="collection-item"><span class="title">'+swval+ '</span> ' + text)
             }
 
-            // If a playing music was received, display that to the user
-            if (data.music) {
-                $("#playing_music").text(data.music)
-            } else {
-                $("#playing_music").text("(none right now)")
+            var last_state = false;
+            var max_time = {{ max_time }};
+            var refresh_state = {{ refresh_state }};
+
+            // enable vibration support
+            navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+            function get_state() {
+                $.getJSON("/state", function (data) {
+                    // First, set all buttons to grey except for the active state
+                    $("#statelist div").toggleClass("deep-orange lighten-5 lighten-3", false)
+                    $("#" + data.state).toggleClass("deep-orange lighten-5", true)
+
+                    // If state has changed since last state and the stopwatch started, add to saved times
+                    if(sw_interval && (data.state != last_state) ) {
+                        sw_log(data.state)
+                        toast("Now starting scene " + data.state)
+                        last_state = data.state
+                    }
+
+                    // If a playing sound was received, display that to the user
+                    if (data.sound) {
+                        $("#playing_sound").text(data.sound)
+                    } else {
+                        $("#playing_sound").text("(none right now)")
+                    }
+
+                    // If a playing music was received, display that to the user
+                    if (data.music) {
+                        $("#playing_music").text(data.music)
+                    } else {
+                        $("#playing_music").text("(none right now)")
+                    }
+
+                    // Finally, put the switches in the same condition as the server thinks they are
+                    for (var pin in data.outputpins) {
+                        $("#" + pin).prop('checked', data.outputpins[pin], true);
+                    }
+
+                    if(data.logs) {
+                        $("#loglist").empty();
+                        for(var log in data.logs) {
+                            $("#loglist").append("<li class='collection-item'>" + data.logs[log])
+                        }
+                    }
+                }).fail(function(){
+                    toast("Could not connect to server", true)
+                })
             }
 
-            // Finally, put the switches in the same condition as the server thinks they are
-            for (var pin in data.outputpins) {
-                $("#" + pin).prop('checked', data.outputpins[pin], true);
-            }
+            // Functie die iedere seconde het klokje van de stopwatch bijwerkt. Nog best lastig!
+            var overtime_buzz = false
+            function update_sw() {
+                // Reken eerst minuten en secondes uit sinds start klok. Secondes als string, met voorloop nul
+                diff = (timestamp() - sw_starttime)
+                minutes = Math.floor(diff / 60)
+                secs = ("0" + (diff - minutes * 60)).substr(-2)
+                valstring = minutes + ":" + secs
 
-            if(data.logs) {
-                $("#loglist").empty();
-                for(var log in data.logs) {
-                    $("#loglist").append("<li class='collection-item'>" + data.logs[log])
+                // Max_time is server side gezet bij aanmaken pagina
+                if (minutes >= max_time) {
+
+                    $("#swclock").html(valstring + "!")
+                    if (!overtime_buzz) {
+                        toast("Overtime! " + max_time + " minutes have passed!")
+                        sw_log("Overtime! " + max_time + " minutes have passed!")
+
+                        // Als de telefoon buzz ondersteunt, buzz dan één keer.
+                        if (navigator.vibrate) {
+                            navigator.vibrate(1000);
+                        }
+                        overtime_buzz = true
+                    }
+                } else {
+                    $("#swclock").html(valstring)
                 }
             }
-        }).fail(function(){
-            toast("Could not connect to server", true)
-        })
-    }
 
-// Functie die iedere seconde het klokje van de stopwatch bijwerkt. Nog best lastig!
-var overtime_buzz = false
-function update_sw() {
-    // Reken eerst minuten en secondes uit sinds start klok. Secondes als string, met voorloop nul
-    diff = (timestamp() - sw_starttime)
-    minutes = Math.floor(diff / 60)
-    secs = ("0" + (diff - minutes * 60)).substr(-2)
-    valstring = minutes + ":" + secs
-
-    // Max_time is server side gezet bij aanmaken pagina
-    if (minutes >= max_time) {
-
-        $("#swclock").html(valstring + "!")
-        if (!overtime_buzz) {
-            toast("Overtime! " + max_time + " minutes have passed!")
-            sw_log("Overtime! " + max_time + " minutes have passed!")
-
-            // Als de telefoon buzz ondersteunt, buzz dan één keer.
-            if (navigator.vibrate) {
-                navigator.vibrate(1000);
+            function forceState(caller, state) {
+                $(caller).toggleClass("deep-orange lighten-3", true)
+                $.get("/state/" + state)
             }
-            overtime_buzz = true
-        }
-    } else {
-        $("#swclock").html(valstring)
-    }
-}
 
-function forceState(caller, state) {
-    $(caller).toggleClass("deep-orange lighten-3", true)
-    $.get("/state/" + state)
-}
+            defaulttoasttime = 4000
+            fullrefresh = refresh_state * 1000
+            function toast(message, shorten) {
+                // If full time, or if the current refresh is longer then the default toast time
+                // I need to make sure that in the other case (shorten AND short refresh rates) toasts don't start piling up
+                if(!shorten || fullrefresh > defaulttoasttime) {
+                    Materialize.toast(message, defaulttoasttime)
+                } else {
+                    Materialize.toast(message, fullrefresh)
+                }
+            }
 
-defaulttoasttime = 4000
-fullrefresh = refresh_state * 1000
-function toast(message, shorten) {
-    // If full time, or if the current refresh is longer then the default toast time
-    // I need to make sure that in the other case (shorten AND short refresh rates) toasts don't start piling up
-    if(!shorten || fullrefresh > defaulttoasttime) {
-        Materialize.toast(message, defaulttoasttime)
-    } else {
-        Materialize.toast(message, fullrefresh)
-    }
-}
+            var sw_interval
+            var sw_starttime = 0
+            $( document ).ready(function() {
+                $('ul.tabs').tabs();
+                // When clicking on a state button, set the state server side and mark the button green
+                // It will catch up later with the getstate function
 
-var sw_interval
-var sw_starttime = 0
-$( document ).ready(function() {
-    $('ul.tabs').tabs();
-    // When clicking on a state button, set the state server side and mark the button green
-    // It will catch up later with the getstate function
+                // If someone clicks the switch, call the server to follow
+                $("input[name='switchbutton']").on('click', function(e){
+                    $.get("/switch/" + $(this).attr("id") + "/" + ($(this).is(':checked') ? "1" : "0"))
+                })
 
-    // If someone clicks the switch, call the server to follow
-    $("input[name='switchbutton']").on('click', function(e){
-            $.get("/switch/" + $(this).attr("id") + "/" + ($(this).is(':checked') ? "1" : "0"))
-    })
+                // Send a request to play said MP3 server side
+                $("#soundlist a").click(function(){
+                    $.get("/play/" + $(this).attr("soundfile"))
+                })
 
-    // Send a request to play said MP3 server side
-    $("#soundlist a").click(function(){
-        $.get("/play/" + $(this).attr("soundfile"))
-    })
+                // Send a request to shutdown c.h.i.p.
+                $("#shutdown").click(function(){
+                    $.get("/shutdown")
+                })
+                $("#reboot").click(function(){
+                    $.get("/reboot")
+                })
 
-    // Send a request to shutdown c.h.i.p.
-    $("#shutdown").click(function(){
-        $.get("/shutdown")
-    })
-    $("#reboot").click(function(){
-        $.get("/reboot")
-    })
+                $('.modal-trigger').leanModal();
 
-    $('.modal-trigger').leanModal();
+                // Start sliders for music and sound volumes
+                musicvol = document.getElementById("musicvol")
+                noUiSlider.create(musicvol, {
+                    start: {{ music_volume }},
+                    step: 10,
+                    range: {
+                        'min': 0,
+                        'max': 100
+                    }
+                })
+                musicvol.noUiSlider.on('change', function() {
+                    $.get("/setvolume/music_volume/" + musicvol.noUiSlider.get())
+                })
 
-    // Start sliders for music and sound volumes
-    musicvol = document.getElementById("musicvol")
-    noUiSlider.create(musicvol, {
-       start: {{ music_volume }},
-       step: 10,
-       range: {
-         'min': 0,
-         'max': 100
-       }
-      })
-    musicvol.noUiSlider.on('change', function() {
-         $.get("/setvolume/music_volume/" + musicvol.noUiSlider.get())
-    })
-
-    // Start sliders for music and sound volumes
-    soundvol = document.getElementById("soundvol")
-     noUiSlider.create(soundvol, {
-         start: {{ sound_volume }},
-         step: 10,
-         range: {
-         'min': 0,
-         'max': 100
-        }
-      });
-    soundvol.noUiSlider.on('change', function() {
-         $.get("/setvolume/sound_volume/" + soundvol.noUiSlider.get())
-    })
+                // Start sliders for music and sound volumes
+                soundvol = document.getElementById("soundvol")
+                noUiSlider.create(soundvol, {
+                    start: {{ sound_volume }},
+                    step: 10,
+                    range: {
+                        'min': 0,
+                        'max': 100
+                    }
+                });
+                soundvol.noUiSlider.on('change', function() {
+                    $.get("/setvolume/sound_volume/" + soundvol.noUiSlider.get())
+                })
 
 
 
-    //Stopwatch functions
-    $("#swstart").click(function() {
-        if(!sw_interval){
-            $("#swresults").empty()
-            sw_starttime = timestamp()
-            sw_interval = setInterval(update_sw,1)
-        } else {
-            clearInterval(sw_interval);
-            sw_interval = null;
-            overtime_buzz = false
-            sw_log("Stopped!")
-        }
-    })
+                //Stopwatch functions
+                $("#swstart").click(function() {
+                    if(!sw_interval){
+                        $("#swresults").empty()
+                        sw_starttime = timestamp()
+                        sw_interval = setInterval(update_sw,1)
+                    } else {
+                        clearInterval(sw_interval);
+                        sw_interval = null;
+                        overtime_buzz = false
+                        sw_log("Stopped!")
+                    }
+                })
 
-    // Kick off the state Ajax requests, repeat until page death
-    get_state();
-    setInterval(get_state,(refresh_state * 1000))
-})
-  </script>
-  </body>
+                // Kick off the state Ajax requests, repeat until page death
+                get_state();
+                setInterval(get_state,(refresh_state * 1000))
+            })
+        </script>
+</body>
 </html>
