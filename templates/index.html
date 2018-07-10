@@ -37,13 +37,10 @@
                     <a href="#home">Scenes</a>
                 </li>
                 <li class="tab col s3">
-                    <a href="#sounds">Hints</a>
+                    <a href="#hints">Hints</a>
                 </li>
                 <li class="tab col s3">
                     <a href="#log">System</a>
-                </li>
-                <li class="tab col s3">
-                    <a href="#hints">Hints</a>
                 </li>
             </ul>
         </div>
@@ -84,20 +81,6 @@
                 <ul id="swresults" class="collection"></ul>
             </div>
         </div>
-
-        <div id="sounds" class="col s6">
-            <div class="row">
-                <div class="col s12">
-                    <div id="soundlist" class="collection">
-                        {% for sound in sounds %}
-                        <a href="#" soundfile="{{ sound }}" class="collection-item left-align">
-                            <i class="small material-icons left">play_arrow</i>{{ sound }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <div id="log" class="col s12">
@@ -322,11 +305,6 @@
             // If someone clicks the switch, call the server to follow
             $("input[name='switchbutton']").on('click', function (e) {
                 $.get("/switch/" + $(this).attr("id") + "/" + ($(this).is(':checked') ? "1" : "0"))
-            })
-
-            // Send a request to play said MP3 server side
-            $("#soundlist a").click(function () {
-                $.get("/play/" + $(this).attr("soundfile"))
             })
 
             // Send a request to play said MP3 server side
