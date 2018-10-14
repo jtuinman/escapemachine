@@ -190,6 +190,7 @@ def flask_state():
     return jsonify(state=readeable_states[state],
                    sound=playing_sound,
                    music=playing_music,
+                   language='NL',
                    outputpins=outputpinstates,
                    logs=entriesHandler.get_last_entries()
                    )
