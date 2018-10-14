@@ -121,6 +121,22 @@
                 </div>
             </div>
 
+<h4>Language</h4>
+<div class="divider"></div>
+<div class="section">
+    <div class="row">
+        <div class="col s12">
+            <div class="switch">
+                <label>
+                    EN
+                    <input type="checkbox" name="switchbutton" id="switchLanguage" {% if pin.is_on %}checked{% endif %}>
+                    <span class="lever"></span>
+                    NL
+                </label>
+            </div> 
+        </div>
+    </div>
+</div>
 
             <h4>System</h4>
             <div class="divider"></div>
@@ -193,14 +209,14 @@
         <h4>Panic mode</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 1" soundfile="1-Is_er_nog_wat_te_eten_in_de_koelkast.ogg">
+                <div class="card lighten-5" id="hint1" soundfile="1.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Houd het heel
+                            Maak het niet stuk!
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="1-Zitten_er_misschien_monster_onder_het_bed.ogg">
+                <div class="card lighten-5" id="hint2" soundfile="2.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Niet de bedoeling
@@ -212,14 +228,14 @@
         <h4 id="kist">Grote kist</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 1" soundfile="1-Is_er_nog_wat_te_eten_in_de_koelkast.ogg">
+                <div class="card lighten-5" id="hint10" soundfile="10.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Eten in de koelkast
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="1-Zitten_er_misschien_monster_onder_het_bed.ogg">
+                <div class="card lighten-5" id="hint11" soundfile="11.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Monsters onder het bed
@@ -231,66 +247,73 @@
         <h4 id="sterrenbeelden">Sterrenbeelden</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 1" soundfile="1-Is_er_nog_wat_te_eten_in_de_koelkast.ogg">
+                <div class="card lighten-5" id="hint20" soundfile="20.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Kleine houten kistje
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint21" soundfile="21.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Ander houten kistje
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint22" soundfile="22.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Kijk in de keuken
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint23" soundfile="23.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Kijk omhoog
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
-                    <div class="card-content deep-orange-text darken-4">
-                        <span class="hintcard-title">
-                            Maar &eacute;&eacute;n sterrenbeeld
-                        </span>
-                    </div>
-                </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint24" soundfile="24.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Op welk sterrenbeeld
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint25" soundfile="25.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             In een hoek gedreven
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint26" soundfile="26.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Remedie eigenschap Steenbok
+                            Maar &eacute;&eacute;n sterrenbeeld
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint27" soundfile="27.ogg">
+                    <div class="card-content deep-orange-text darken-4">
+                        <span class="hintcard-title">
+                            Pak de kaarten
+                        </span>
+                    </div>
+                </div>
+                <div class="card lighten-5" id="hint28" soundfile="28.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Steenbok mag optimistischer
+                        </span>
+                    </div>
+                </div>
+                <div class="card lighten-5" id="hint29" soundfile="29.ogg">
+                    <div class="card-content deep-orange-text darken-4">
+                        <span class="hintcard-title">
+                            Vind de remedie
                         </span>
                     </div>
                 </div>
@@ -300,106 +323,100 @@
         <h4 id="ladenkast">Ladenkast</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 1" soundfile="">
+                <div class="card lighten-5" id="hint30" soundfile="30.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Ladenkast al bekeken
+                            ladenkast bekeken?
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint31" soundfile="31.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Lees Lexicon Potum
+                            Alleen nodige ingredi&euml;ten
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint32" soundfile="32.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Bekijk de kaarten
+                            Optimismo, rest dicht
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint33" soundfile="33.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Alleen ingredienten Optimismo
+                            Lees Lexicon nog eens
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint34" soundfile="34.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Alleen wat je nodig hebt
+                            Ingredi&euml;nt X voor het grijpen
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint35" soundfile="35.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Ingredient X
+                            Alle lades zijn open
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint36" soundfile="36.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Alle lades ontgrendeld
+                            Begin helemaal opnieuw
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
-                    <div class="card-content deep-orange-text darken-4">
-                        <span class="hintcard-title">
-                            Begin eens opnieuw
-                        </span>
-                    </div>
-                </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint37" soundfile="37.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Juiste plaats lades
                         </span>
                     </div>
                 </div>
+
             </div>
         </div>
         <h4 id="boekenswitch">Boekenswitch</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint40" soundfile="40.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Goed boek gelezen?
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint41" soundfile="41.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Allebei een boek
+                            Lees allebei een boek
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint42" soundfile="42.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Meer plekken met boeken
+                            meer boeken dan je denkt
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint43" soundfile="43.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Soms samenwerken
+                            Samenwerken voor resultaat
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint44" soundfile="44.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Afzonderlijk niet, tegelijk
+                            Probeer eens tegelijk
                         </span>
                     </div>
                 </div>
@@ -408,49 +425,49 @@
         <h4 id="pentagram">Pentagram</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 2" soundfile="">
-                    <div class="card-content deep-orange-text darken-4">
-                        <span class="hintcard-title">
-                            Touw uit kist
-                        </span>
-                    </div>
-                </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint50" soundfile="50.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Figuur maken
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint51" soundfile="51.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Figuur op kastje
+                            Heb je dat touw nog?
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint52" soundfile="52.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Pentagram
+                            Symbool op kastje
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint53" soundfile="53.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Witte pin
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint54" soundfile="54.ogg">
+                    <div class="card-content deep-orange-text darken-4">
+                        <span class="hintcard-title">
+                            Pentagram
+                        </span>
+                    </div>
+                </div>
+                <div class="card lighten-5" id="hint55" soundfile="55.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Cijfers onder knopen
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint56" soundfile="56.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Volg het touw
@@ -462,10 +479,10 @@
         <h4 id="sleutelkastje">Sleutelkastje</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint60" soundfile="60.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Al geopend?
+                            Kastje al geopend?
                         </span>
                     </div>
                 </div>
@@ -474,7 +491,7 @@
         <h4 id="eindslot">Eindslot</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint70" soundfile="70.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Draai om te openen
@@ -486,35 +503,35 @@
         <h4 id="algemeen">Algemeen</h4>
         <div class="row">
             <div class="col s8 m6 l3" id="hintlist">
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint80" soundfile="80.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Niet veel tijd
+                            Goed bezig!
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint81" soundfile="81.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
-                            Goed bezig
+                            Niet veel tijd meer
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint82" soundfile="82.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Controleer kastjes
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint83" soundfile="83.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="hintcard-title">
                             Ja
                         </span>
                     </div>
                 </div>
-                <div class="card lighten-5" id="hint 2" soundfile="">
+                <div class="card lighten-5" id="hint84" soundfile="84.ogg">
                     <div class="card-content deep-orange-text darken-4">
                         <span class="chintcardard-title">
                             Nee
