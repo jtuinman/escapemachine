@@ -187,11 +187,10 @@ def flask_state():
     playing_sound = last_soundpath if (sound_channel and sound_channel.get_busy()) else False
     playing_music = music if pygame.mixer.music.get_busy() else False
     outputpinstates = {pinname: pin.is_on for (pinname, pin) in outputpins.iteritems()}
-    language = setlanguage
+    ##language = setlanguage
     return jsonify(state=readeable_states[state],
                    sound=playing_sound,
                    music=playing_music,
-                   language=language,
                    outputpins=outputpinstates,
                    logs=entriesHandler.get_last_entries()
                    )
