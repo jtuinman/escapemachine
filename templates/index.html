@@ -662,6 +662,11 @@
                 $.get("/switch/" + $(this).attr("id") + "/" + ($(this).is(':checked') ? "1" : "0"))
             })
 
+            // If someone clicks the language switch, call the server to follow
+            $("input[name='switchlanguagebutton']").on('click', function (e) {
+                $.get("/switchlanguage/" + ($(this).is(':checked') ? "1" : "0"))
+            })
+
             // Send a request to play said MP3 server side
             $("#hintlist div.card").click(function () {
                 $.get("/play/" + $(this).attr("soundfile"))
