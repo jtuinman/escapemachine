@@ -256,7 +256,7 @@ def flask_set_switch(pinname, newstate):
 
 
 @app.route('/switchlanguage')
-def flask_get_lastlog():
+def flask_set_language():
     return jsonify(lastlog=entriesHandler.get_last_entries())
 
 @app.route('/lastlog')
