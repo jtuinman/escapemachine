@@ -254,6 +254,11 @@ def flask_set_switch(pinname, newstate):
         logger.error("Got exception trying to turn pin, " + str(e))
     return jsonify(result="ok")
 
+
+@app.route('/switchlanguage')
+def flask_get_lastlog():
+    return jsonify(lastlog=entriesHandler.get_last_entries())
+
 @app.route('/lastlog')
 def flask_get_lastlog():
     return jsonify(lastlog=entriesHandler.get_last_entries())
