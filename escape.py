@@ -187,9 +187,11 @@ def flask_state():
     playing_sound = last_soundpath if (sound_channel and sound_channel.get_busy()) else False
     playing_music = music if pygame.mixer.music.get_busy() else False
     outputpinstates = {pinname: pin.is_on for (pinname, pin) in outputpins.iteritems()}
+    language = setlanguage
     return jsonify(state=readeable_states[state],
                    sound=playing_sound,
                    music=playing_music,
+                   language=language,
                    outputpins=outputpinstates,
                    logs=entriesHandler.get_last_entries()
                    )
@@ -251,6 +253,11 @@ def flask_set_switch(pinname, newstate):
     except Exception, e:
         logger.error("Got exception trying to turn pin, " + str(e))
     return jsonify(result="ok")
+
+
+@app.route('/switchlanguage')
+def flask_set_language():
+     logger.info("Got web request for language")
 
 @app.route('/lastlog')
 def flask_get_lastlog():
@@ -314,6 +321,7 @@ magnet = OutputPin(config.getint("Escape", "magnetpin"), "Magnet")
 time.sleep(0.5)
 cabinet = OutputPin(config.getint("Escape", "cabinetpin"), "Cabinet")
 outputpins = {lamp.name:lamp, spot.name:spot, magnet.name:magnet, cabinet.name:cabinet}
+setlanguage = config.get("Escape", "language")
 sounddir = config.get("Escape", "sounddir") + "/"
 music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
