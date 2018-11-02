@@ -111,7 +111,7 @@ def state_machine_endgame():
 
 
 def play_scene_sound(scene_sound):
-    if config.has_option('Escape', scene_sound):
+    ##if config.has_option('Escape', scene_sound):
         play_sound(sounddir + config.get("Escape", scene_sound))
 
 ## Sound code, used for calling hints to the players
