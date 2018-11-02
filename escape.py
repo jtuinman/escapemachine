@@ -165,8 +165,8 @@ def play_music(soundpath):
     music = soundpath
     pygame.mixer.music.set_volume(float(music_volume) / 100)
     pygame.mixer.music.play(-1)
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
+##    while pygame.mixer.music.get_busy():
+##        pygame.time.Clock().tick(10)
 
 def stop_music():
     fade = config.getint("Escape","fadeout")
