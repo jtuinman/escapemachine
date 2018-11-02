@@ -179,6 +179,9 @@ def stop_music():
 def get_sounds_from_folder(dir):
     return sorted([f for f in os.listdir(dir) if re.search(r'.+\.(wav|ogg|mp3)$', f)])
 
+def set_sound_dir():
+    global sounddir, setlanguage
+    sounddir = config.get("Escape", "sounddir") + setlanguage + "/"
 
 ### FLASK METHODS
 
@@ -257,7 +260,11 @@ def flask_set_switch(pinname, newstate):
 
 @app.route('/switchlanguage')
 def flask_set_language():
-     logger.info("Got web request for language")
+    global setlanguage
+    setlanguage = "NL" if setlanguage == "EN" else "EN"
+    set_sound_dir()
+    logger.info("Got web request for language")
+    return jsonify(switchedTo=setlanguage)
 
 @app.route('/lastlog')
 def flask_get_lastlog():
@@ -302,16 +309,19 @@ logger.setLevel(logging.INFO)
 ## Init all pins
 logger.info("Initalizing pins")
 bookbuttonpin1 = config.getint("Escape", "bookbuttonpin1")
-GPIO.setup(bookbuttonpin1, GPIO.IN)
-GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(bookbuttonpin1, GPIO.IN)
+    GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 bookbuttonpin2 = config.getint("Escape", "bookbuttonpin2")
-GPIO.setup(bookbuttonpin2, GPIO.IN)
-GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(bookbuttonpin2, GPIO.IN)
+    GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 keybuttonpin = config.getint("Escape", "keybuttonpin")
-GPIO.setup(keybuttonpin, GPIO.IN)
-GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(keybuttonpin, GPIO.IN)
+    GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 lamp = OutputPin(config.getint("Escape", "lamppin"), "Lamp")
 time.sleep(0.5)
@@ -322,7 +332,8 @@ time.sleep(0.5)
 cabinet = OutputPin(config.getint("Escape", "cabinetpin"), "Cabinet")
 outputpins = {lamp.name:lamp, spot.name:spot, magnet.name:magnet, cabinet.name:cabinet}
 setlanguage = config.get("Escape", "language")
-sounddir = config.get("Escape", "sounddir") + "/"
+sounddir = ""
+set_sound_dir()
 music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
 pygame.mixer.music.set_volume(music_volume / 100)

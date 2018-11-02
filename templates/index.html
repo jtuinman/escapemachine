@@ -128,10 +128,10 @@
         <div class="col s12">
             <div class="switch">
                 <label>
-                    EN
+                    NL
                     <input type="checkbox" name="switchlanguagebutton" id="switchLanguage" >
                     <span class="lever"></span>
-                    NL
+                    EN
                 </label>
             </div> 
         </div>
@@ -664,7 +664,7 @@
 
             // If someone clicks the language switch, call the server to follow
             $("input[name='switchlanguagebutton']").on('click', function (e) {
-                $.get("/switchlanguage/")
+                $.get("/switchlanguage")
             })
 
             // Send a request to play said MP3 server side
