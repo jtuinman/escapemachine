@@ -52,7 +52,7 @@ def clean():
 ## Given time, the state machine should be migrated to it's own class and use
 ## external XML or sorts to define states. Seeing the clear purpose of the current
 ## version I'm not investing time in that yet.
-def run_state_machine(self):
+def run_state_machine():
     ## Measuring buttons states before investigating current state
     time.sleep(0.3)
     book1pushed = GPIO.input(bookbuttonpin1)
