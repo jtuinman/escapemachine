@@ -179,6 +179,9 @@ def stop_music():
 def get_sounds_from_folder(dir):
     return sorted([f for f in os.listdir(dir) if re.search(r'.+\.(wav|ogg|mp3)$', f)])
 
+def set_sound_dir():
+    global sounddir, setlanguage
+    sounddir = config.get("Escape", "sounddir") + setlanguage + "/"
 
 ### FLASK METHODS
 
@@ -257,7 +260,11 @@ def flask_set_switch(pinname, newstate):
 
 @app.route('/switchlanguage')
 def flask_set_language():
-     logger.info("Got web request for language")
+    global setlanguage
+    setlanguage = "NL" if setlanguage == "EN" else "EN"
+    set_sound_dir()
+    logger.info("Got web request for language")
+    return jsonify(switchedTo=setlanguage)
 
 @app.route('/lastlog')
 def flask_get_lastlog():
@@ -325,7 +332,8 @@ time.sleep(0.5)
 cabinet = OutputPin(config.getint("Escape", "cabinetpin"), "Cabinet")
 outputpins = {lamp.name:lamp, spot.name:spot, magnet.name:magnet, cabinet.name:cabinet}
 setlanguage = config.get("Escape", "language")
-sounddir = config.get("Escape", "sounddir") + "/"
+sounddir = ""
+set_sound_dir()
 music_volume = config.getfloat("Escape", "music_volume")
 sound_volume = config.getfloat("Escape", "sound_volume")
 pygame.mixer.music.set_volume(music_volume / 100)
