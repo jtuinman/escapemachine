@@ -302,16 +302,19 @@ logger.setLevel(logging.INFO)
 ## Init all pins
 logger.info("Initalizing pins")
 bookbuttonpin1 = config.getint("Escape", "bookbuttonpin1")
-GPIO.setup(bookbuttonpin1, GPIO.IN)
-GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(bookbuttonpin1, GPIO.IN)
+    GPIO.add_event_detect(bookbuttonpin1, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 bookbuttonpin2 = config.getint("Escape", "bookbuttonpin2")
-GPIO.setup(bookbuttonpin2, GPIO.IN)
-GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(bookbuttonpin2, GPIO.IN)
+    GPIO.add_event_detect(bookbuttonpin2, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 keybuttonpin = config.getint("Escape", "keybuttonpin")
-GPIO.setup(keybuttonpin, GPIO.IN)
-GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
+if GPIO:
+    GPIO.setup(keybuttonpin, GPIO.IN)
+    GPIO.add_event_detect(keybuttonpin, GPIO.BOTH, callback=run_state_machine, bouncetime=200)
 
 lamp = OutputPin(config.getint("Escape", "lamppin"), "Lamp")
 time.sleep(0.5)
