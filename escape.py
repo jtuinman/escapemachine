@@ -97,7 +97,7 @@ def state_machine_bathroom():
     magnet.turn_off()
     spot.turn_on()
     play_music(sounddir + config.get("Escape","music_state_bathroom"))
-##    play_scene_sound("sound_effect_bathroom")
+    play_scene_sound("sound_effect_bathroom")
 
 def state_machine_endgame():
     global state
